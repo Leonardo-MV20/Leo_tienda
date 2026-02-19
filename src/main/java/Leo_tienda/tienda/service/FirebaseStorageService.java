@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FirebaseStorageService {
-
     @Value("${firebase.bucket.name}")
     private String bucketName;
     @Value("${firebase.storage.path}")
