@@ -71,7 +71,7 @@ public class ProductoService {
                     "No se puede eliminar el producto. Tiene datos asociados.", e);
         }
     }
-    
+
     @Transactional(readOnly = true)
     public List<Producto> consultaDerivada(double precioInf, double precioSup) {
         return productoRepository.findByPrecioBetweenOrderByPrecioAsc(precioInf, precioSup);
@@ -84,6 +84,11 @@ public class ProductoService {
 
     @Transactional(readOnly = true)
     public List<Producto> consultaSQL(double precioInf, double precioSup) {
-        return productoRepository.consultaJPQL(precioInf, precioSup);
+        return productoRepository.consultaSQL(precioInf, precioSup);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Producto> consultaSQLCategoria(int idCategoria) {
+        return productoRepository.consultaSQLCategoria(idCategoria);
     }
 }

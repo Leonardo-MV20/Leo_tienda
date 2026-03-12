@@ -57,4 +57,11 @@ public class ConsultaController {
         return "/consultas/listado";
     }
 
+    @PostMapping("/consultaCategoria")
+    public String consultaCategoria(@RequestParam() int idCategoria, Model model) {
+        var lista = productoService.consultaSQLCategoria(idCategoria);
+        model.addAttribute("productos", lista);
+        model.addAttribute("idCategoria", idCategoria);
+        return "/consultas/listado";
+    }
 }
