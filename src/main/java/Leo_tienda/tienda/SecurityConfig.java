@@ -1,14 +1,14 @@
 package Leo_tienda.tienda;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -62,7 +62,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    //Este método será reemplazado la siguiente semana
+    /*Este método será reemplazado la siguiente semana
     @Bean
     public UserDetailsService users(PasswordEncoder passwordEncoder) {
         UserDetails juan = User.builder()
@@ -81,6 +81,13 @@ public class SecurityConfig {
                 .roles("USUARIO") // Consistent con tu configuración
                 .build();
         return new InMemoryUserDetailsManager(juan, rebeca, pedro);
+    }*/
+    
+    @Autowired
+    public void configurerGlobal(AuthenticationManagerBuilder build,
+            @Lazy PasswordEncoder passwordEncoder,
+            @Lazy UserDetailsService userDetailsService) throws Exception {
+        build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
 }

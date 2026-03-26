@@ -1,8 +1,6 @@
 package Leo_tienda.tienda;
 
 import java.util.Locale;
-import org.apache.tomcat.util.descriptor.LocalResolver;
-import org.springframework.boot.autoconfigure.web.WebProperties.LocaleResolver;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -69,4 +67,6 @@ public class ProjectConfig implements WebMvcConfigurer {
         messageSource.setDefaultEncoding("UFT-8");
         return messageSource;
     }
+    
+    
 }
